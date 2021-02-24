@@ -1,4 +1,4 @@
-﻿class Discord
+class Discord
 {
 	static BaseURL := "https://discordapp.com/api"
 	
@@ -92,6 +92,14 @@
 		return this.CallAPI("POST", "/channels/" channel_id "/messages", {"content": content})
 	}
 	
+	; Posts a reaction emoji to a message in a channel
+	; urlemoji: Must be "URL formatted". example: "%E2%9C%85" = checkmark
+	; emoji tables - https://apps.timwhitlock.info/emoji/tables/unicode
+	SendEmoji(channel_id, message_id, urlemoji)
+	{
+		return this.CallAPI("PUT", "/channels/" channel_id "/messages/" message_id "/reactions/" urlemoji "/@me")
+	}
+	
 	/*
 		Internal function triggered when the script receives a message on
 		the WebSocket connected to the page.
@@ -178,6 +186,6 @@
 		this.Send({"op": 1, "d": this.Seq})
 	}
 	
-	#Include %A_LineFile%\..\Lib\WebSocket.ahk\WebSocket.ahk
-	#Include %A_LineFile%\..\Lib\AutoHotkey-JSON\Jxon.ahk
+	#Include WebSocket.ahk
+	#Include Jxon.ahk
 }
