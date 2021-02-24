@@ -186,6 +186,6 @@ class Discord
 		this.Send({"op": 1, "d": this.Seq})
 	}
 	
-	#Include WebSocket.ahk
-	#Include Jxon.ahk
+	#Include %A_LineFile%\..\Lib\WebSocket.ahk\WebSocket.ahk
+	#Include %A_LineFile%\..\Lib\AutoHotkey-JSON\Jxon.ahk
 }
